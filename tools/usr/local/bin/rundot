@@ -1,0 +1,26 @@
+#! /bin/bash
+
+# run dot to generate outfile
+# and open it with viewnior
+
+if [ $# -ne 1 ]; then
+	echo 'ERROR: no input file'
+	exit 1
+fi
+
+if [ ! -f $1 ]; then
+	echo "ERROR: no such file: $1"
+	exit 1
+fi
+
+filepath="/tmp/graphviz_output_$(echo $RANDOM | md5sum | cut -c '1-8')"
+
+dot -Tpng $1 -o $filepath
+
+if [ $? -eq 0 ]; then
+	echo "output to $filepath"
+fi
+
+viewnior $filepath
+
+exit 0
