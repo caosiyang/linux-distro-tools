@@ -26,3 +26,15 @@ cat >> ~/.bashrc << EOF
 alias ll='ls -l'
 alias rm='rm -i'
 EOF
+
+mkdir ~/golang
+
+# set env for golang
+cat >> ~/.bash_profile << EOF
+export GOPATH=~/golang/third-party:~/golang
+export GOROOT=/usr/lib/go
+# Enable the go modules feature
+export GO111MODULE=on
+# Set the GOPROXY environment variable
+export GOPROXY=https://goproxy.io
+EOF
